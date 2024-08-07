@@ -1,0 +1,51 @@
+body {
+  position: relative;
+
+  --body-line-start: #0d111b;
+  --body-line-end: #1a1e43;
+  --body-dots-f: #0d111b;
+  --body-dots-s: #1a1e43;
+
+  background: radial-gradient(var(--body-dots-f) 1px, transparent 0px),
+    radial-gradient(var(--body-dots-s) 1px, transparent 0px),
+    linear-gradient(90deg, var(--body-line-start), var(--body-line-end));
+
+  background-size: 15px 15px, 5px 5px, 100% 100%;
+
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+div#root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  overflow-x: hidden;
+
+  min-height: 100vh;
+}
+
+@font-face {
+  font-family: "Zain/ExtraBold";
+  src: url(../fonts/Zain/ExtraBold.ttf) format(truetype);
+}
+
+@font-face {
+  font-family: "Zain/Light";
+  src: url(../fonts/Zain/Light.ttf) format(truetype);
+}
+
+@font-face {
+  font-family: "Zain/ExtraLight";
+  src: url(../fonts/Zain/ExtraLight.ttf) format(truetype);
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(../fonts/Inter/VariableFont_slnt_wght.ttf) format(truetype);
+}
