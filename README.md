@@ -9,7 +9,7 @@ features:
 
 - notification system
 
-FSD, clear code, styled-components, zustand
+clear code, styled-components, zustand
 
 # run local
 
