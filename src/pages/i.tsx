@@ -21,12 +21,6 @@ const Instruments = () => {
         header="PassGen"
         content="Genereate a strong password"
       />
-
-      {/* <InstrumentsItem
-        to="/docs"
-        header="Docs"
-        content="Documentation for my projects"
-      /> */}
     </instruments.container>
   );
 };

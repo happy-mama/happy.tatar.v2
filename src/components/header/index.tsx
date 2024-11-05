@@ -1,15 +1,17 @@
 import header from "@/styles/components/header";
-import logo from "@/assets/svg/logo.svg";
 import utils from "@/styles/utils";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <header.container>
-      <header.logo>
-        <header.silentLink to="/">
-          <header.icon src={logo} />
-        </header.silentLink>
-      </header.logo>
+      <header.silentLink to="/">
+        <header.item>
+          {location.pathname !== "/" && <header.text>Home</header.text>}
+        </header.item>
+      </header.silentLink>
 
       <header.itemList>
         <utils.silentLink to="/i">

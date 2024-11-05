@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const header = {
   container: styled.div`
-    padding: 20px 30px 20px 30px;
+    padding: 0px 30px 0px 30px;
 
     display: flex;
     justify-content: space-between;
@@ -25,11 +25,6 @@ const header = {
     }
   `,
 
-  logo: styled.div`
-    display: flex;
-    align-items: center;
-  `,
-
   itemList: styled.div`
     display: flex;
     gap: 30px;
@@ -41,10 +36,6 @@ const header = {
 
   item: styled.div`
     padding: 10px 10px 10px 10px;
-  `,
-
-  icon: styled.img`
-    height: 30px;
   `,
 
   text: styled.h5`

@@ -1,14 +1,14 @@
 body {
   position: relative;
 
-  --body-line-start: #0d111b;
-  --body-line-end: #1a1e43;
-  --body-dots-f: #0d111b;
-  --body-dots-s: #1a1e43;
+  --body-line-start: #141a29;
+  --body-line-end: #272c61;
+  --body-dots-f: #313338;
+  --body-dots-s: #3c3c43;
 
   background: radial-gradient(var(--body-dots-f) 1px, transparent 0px),
     radial-gradient(var(--body-dots-s) 1px, transparent 0px),
-    linear-gradient(90deg, var(--body-line-start), var(--body-line-end));
+    linear-gradient(110deg, var(--body-line-start), var(--body-line-end));
 
   background-size: 15px 15px, 5px 5px, 100% 100%;
 
