@@ -37,7 +37,7 @@ const Home = () => {
           />
 
           <EmbedLink
-            url="https://t.me/kontent_net"
+            url="https://t.me/rod1ck"
             name="Telegram"
             img={telegramSVG}
             target="_blank"
