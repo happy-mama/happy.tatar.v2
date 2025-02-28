@@ -12,6 +12,7 @@ interface Text {
   $color?: keyof Globals["color"]["text"];
   $ruby?: boolean;
   $width?: "fit-content" | "min-content";
+  $code?: boolean;
 }
 
 interface Img {
@@ -48,6 +49,7 @@ const utils = {
 
     @media (max-width: 700px) {
       flex-flow: column;
+      gap: 5px;
     }
   `,
   embedText: styled.div`
@@ -66,7 +68,8 @@ const utils = {
 
     width: ${props => props.$width};
 
-    font-family: ${globals.fonts.Inter.default};
+    font-family: ${props =>
+      props.$code ? "monospace" : globals.fonts.Inter.default};
     font-size: ${props =>
       globals.size.text[props.$size ? props.$size : "normal"]};
 
@@ -97,6 +100,16 @@ const utils = {
     &:hover {
       transform: translate(${props => props.$translate || "-3px, -1px"});
     }
+  `,
+  wave: styled.pre`
+    margin: 0px;
+
+    font-family: monospace;
+    font-size: 12px;
+    color: ${globals.color.text.dark};
+
+    mask-image: linear-gradient(to bottom, white, transparent);
+    overflow: hidden;
   `,
 };
 
