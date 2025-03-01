@@ -21,6 +21,12 @@ const Instruments = () => {
         header="PassGen"
         content="Genereate a strong password"
       />
+
+      <InstrumentsItem
+        to="/i/calc"
+        header="Calculator"
+        content="Calculate numbers..."
+      />
     </instruments.container>
   );
 };

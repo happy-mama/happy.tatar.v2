@@ -1,9 +1,10 @@
-# My new website
+# My website
 
 instruments:
 
-- FS
+- FS (File Server)
 - passgen
+- calculator (preety comfortable)
 
 features:
 
@@ -22,5 +23,7 @@ npm run dev
 # run build
 
 ```
+npm run build
+
 npm run preview
 ```

@@ -12,6 +12,7 @@ interface Text {
   $color?: keyof Globals["color"]["text"];
   $ruby?: boolean;
   $width?: "fit-content" | "min-content";
+  $height?: string;
   $code?: boolean;
 }
 
@@ -67,6 +68,7 @@ const utils = {
     margin: 0;
 
     width: ${props => props.$width};
+    height: ${props => props.$height};
 
     font-family: ${props =>
       props.$code ? "monospace" : globals.fonts.Inter.default};
@@ -110,6 +112,10 @@ const utils = {
 
     mask-image: linear-gradient(to bottom, white, transparent);
     overflow: hidden;
+  `,
+  hider: styled.div<{ $show: boolean; $transition?: string }>`
+    transition: ${props => props.$transition || "0.2s"};
+    opacity: ${props => (props.$show ? "1" : "0")};
   `,
 };
 

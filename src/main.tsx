@@ -11,10 +11,12 @@ import "@/fonts/Zain/ExtraBold.ttf";
 import "@/fonts/Zain/Light.ttf";
 import "@/fonts/Zain/ExtraLight.ttf";
 import "@/fonts/Inter/VariableFont_slnt_wght.ttf";
-import NotFound from "./pages/404";
-import Instruments from "./pages/i";
-import FSpage from "./pages/i/fs";
-import Passgen from "./pages/i/passgen";
+
+import NotFound from "@/pages/404";
+import Instruments from "@/pages/i";
+import FSpage from "@/pages/i/fs";
+import Passgen from "@/pages/i/passgen";
+import Calc from "@/pages/i/calc";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -27,6 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/i/" element={<Instruments />} />
         <Route path="/i/fs" element={<FSpage />} />
         <Route path="/i/passgen" element={<Passgen />} />
+        <Route path="/i/calc" element={<Calc />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
