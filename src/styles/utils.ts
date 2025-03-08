@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import globals, { Globals } from "@/styles/globals";
+import globals from "@/styles/globals";
 
 interface Spacer {
   $width?: string;
@@ -8,8 +8,8 @@ interface Spacer {
 }
 
 interface Text {
-  $size?: keyof Globals["size"]["text"];
-  $color?: keyof Globals["color"]["text"];
+  $size?: keyof (typeof globals)["size"]["text"];
+  $color?: keyof (typeof globals)["color"]["text"];
   $ruby?: boolean;
   $width?: "fit-content" | "min-content";
   $height?: string;

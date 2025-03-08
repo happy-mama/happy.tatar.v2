@@ -8,7 +8,7 @@ const OPERATORS = "+-*/";
 const BRACKETS = "()";
 // const CONSTRUCTIONS = [];
 
-const Calc = () => {
+const CalcPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [validateError, setValidateError] = useState("");
   const [validateErrorShow, setValidateErrorShow] = useState(false);
@@ -189,4 +189,4 @@ const Calc = () => {
   );
 };
 
-export default Calc;
+export default CalcPage;

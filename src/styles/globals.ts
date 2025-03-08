@@ -1,54 +1,4 @@
-export type Globals = {
-  color: {
-    text: {
-      default: string;
-      defaultInverted: string;
-      success: string;
-      warning: string;
-      danger: string;
-      link: string;
-      dark: string;
-    };
-    bg: {
-      blueLite: string;
-      blueStrong: string;
-      blueHard: string;
-      blueNuclear: string;
-      highlite: string;
-      embedText: string;
-      embedLink: string;
-      notification: string;
-      fsInput: string;
-    };
-  };
-  fonts: {
-    Zain: {
-      extraBold: string;
-      light: string;
-      extraLight: string;
-    };
-    Inter: {
-      default: string;
-    };
-  };
-
-  size: {
-    text: {
-      small: string;
-      lite: string;
-      normal: string;
-      big: string;
-      large: string;
-    };
-  };
-
-  zIndex: {
-    header: string;
-    notification: string;
-  };
-};
-
-const globals: Globals = {
+const globals = {
   color: {
     text: {
       default: "rgba(239, 246, 255, 0.9)",
@@ -69,6 +19,7 @@ const globals: Globals = {
       embedLink: "rgba(255, 255, 255, 0.85)",
       notification: "rgba(54, 54, 54, 0.9)",
       fsInput: "rgba(47, 47, 47, 0.2)",
+      canvasController: "rgba(204, 204, 204, 1)",
     },
   },
 
@@ -94,8 +45,9 @@ const globals: Globals = {
   },
 
   zIndex: {
-    header: "1000",
+    header: "1",
     notification: "1500",
+    canvasController: "2",
   },
 };
 
