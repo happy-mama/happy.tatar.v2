@@ -28,7 +28,11 @@ const Instruments = () => {
         content="Calculate numbers..."
       />
 
-      <InstrumentsItem to="/i/canvas" header="Canvas drawer" content="idk" />
+      <InstrumentsItem
+        to="/i/canvas"
+        header="Canvas drawer"
+        content="A small canvas on which you can draw and edit shapes"
+      />
     </instruments.container>
   );
 };

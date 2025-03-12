@@ -11,15 +11,16 @@ const SVG = {
 
 type props = {
   type: CanvasStore["tool"];
+  mode: CanvasStore["mode"];
   active: CanvasStore["tool"];
-  onClick: (v: CanvasStore["tool"]) => void;
+  onClick: (v: CanvasStore["tool"], m: CanvasStore["mode"]) => void;
 };
 
 const Button = (p: props) => {
   return (
     <canvas.controlButton
       onClick={() => {
-        p.onClick(p.type);
+        p.onClick(p.type, p.mode);
       }}
       $active={p.active == p.type}
     >
@@ -29,13 +30,15 @@ const Button = (p: props) => {
 };
 
 const CanvasController = () => {
-  const canvasStore = useCanvasStore(({ tool, setTool }) => ({
+  const canvasStore = useCanvasStore(({ tool, setTool, setMode }) => ({
     tool,
     setTool,
+    setMode,
   }));
 
-  const handleClick = (v: CanvasStore["tool"]) => {
+  const handleClick = (v: CanvasStore["tool"], m: CanvasStore["mode"]) => {
     canvasStore.setTool(v);
+    canvasStore.setMode(m);
   };
 
   return (
@@ -45,22 +48,13 @@ const CanvasController = () => {
           onClick={handleClick}
           active={canvasStore.tool}
           type="pointer"
-        />
-        <Button onClick={handleClick} active={canvasStore.tool} type="rect" />
-        <Button
-          onClick={handleClick}
-          active={canvasStore.tool}
-          type="pointer"
+          mode="none"
         />
         <Button
           onClick={handleClick}
           active={canvasStore.tool}
-          type="pointer"
-        />
-        <Button
-          onClick={handleClick}
-          active={canvasStore.tool}
-          type="pointer"
+          type="rect"
+          mode="draw"
         />
       </canvas.controlsContainer>
     </canvas.controlsWrapper>

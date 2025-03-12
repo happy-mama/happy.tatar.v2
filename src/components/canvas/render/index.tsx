@@ -1,5 +1,7 @@
 import { Layer, Stage } from "react-konva";
-import { useContext, useMemo } from "react";
+import { useContext, useLayoutEffect, useMemo, useRef } from "react";
+
+import { Layer as ILayer } from "konva/lib/Layer";
 
 import useCanvasStore, { Feature } from "../store";
 import RenderRect from "./rect";
@@ -29,12 +31,19 @@ const CanvasRender = () => {
     [canvasStore.features]
   );
 
-  const renderedDrawObjectsJSX = useMemo(
-    () => Object.values(canvasCtx.draw).map((f, i) => renderFeature(f.raw, i)),
-    [canvasCtx.draw]
+  const renderedShapeObjectsJSX = useMemo(
+    () =>
+      Object.values(canvasCtx.shapes).map((f, i) => renderFeature(f.raw, i)),
+    [canvasCtx.shapes]
   );
 
-  console.log(canvasStore.features);
+  const userLayerRef = useRef<ILayer>(null);
+  const shapeLayerRef = useRef<ILayer>(null);
+
+  useLayoutEffect(() => {
+    canvasCtx.ref.layer.shape = shapeLayerRef.current!;
+    canvasCtx.ref.layer.user = userLayerRef.current!;
+  }, [canvasCtx.ref.layer]);
 
   return (
     <Stage
@@ -45,8 +54,12 @@ const CanvasRender = () => {
       onMouseMove={canvasCtx.events.global.mouseMove}
       onMouseUp={canvasCtx.events.global.mouseUp}
     >
-      <Layer id="user">{renderedUserObjectsJSX}</Layer>
-      <Layer id="draw">{renderedDrawObjectsJSX}</Layer>
+      <Layer ref={userLayerRef} id="user">
+        {renderedUserObjectsJSX}
+      </Layer>
+      <Layer ref={shapeLayerRef} id="shape">
+        {renderedShapeObjectsJSX}
+      </Layer>
     </Stage>
   );
 };

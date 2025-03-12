@@ -19,7 +19,7 @@ const globals = {
       embedLink: "rgba(255, 255, 255, 0.85)",
       notification: "rgba(54, 54, 54, 0.9)",
       fsInput: "rgba(47, 47, 47, 0.2)",
-      canvasController: "rgba(204, 204, 204, 1)",
+      white: "rgb(250, 250, 250)",
     },
   },
 

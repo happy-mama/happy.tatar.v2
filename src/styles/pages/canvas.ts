@@ -24,7 +24,7 @@ const canvas = {
     gap: 4px;
 
     padding: 4px;
-    background-color: ${globals.color.bg.canvasController};
+    background-color: ${globals.color.bg.white};
 
     border: 1px solid black;
     border-radius: 4px;
@@ -34,10 +34,15 @@ const canvas = {
     justify-content: center;
     align-items: center;
 
-    background-color: ${props => (props.$active ? "#fff" : "transparent")};
-
     width: 40px;
     height: 40px;
+
+    border: 1px solid black;
+    border-radius: 4px;
+
+    background-color: ${props => (props.$active ? "#ccc" : "transparent")};
+
+    cursor: ${props => (props.$active ? "default" : "pointer")};
   `,
 };
 

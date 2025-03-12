@@ -12,6 +12,7 @@ const RenderRect = (f: Feature, i: number) => {
       height={f.height}
       width={f.width}
       fill={f.fill}
+      offset={f.offset}
     />
   );
 };

@@ -22,17 +22,25 @@ import CanvasPage from "@/pages/i/canvas";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Header />
       <Notifications />
 
       <Routes>
-        <Route path="/" element={<Root />} />
-        <Route path="/i/" element={<Instruments />} />
-        <Route path="/i/fs" element={<FSpage />} />
-        <Route path="/i/passgen" element={<Passgen />} />
-        <Route path="/i/calc" element={<CalcPage />} />
-        <Route path="/i/canvas" element={<CanvasPage />} />
+        <Route index element={<Root />} />
+
+        <Route path="/i">
+          <Route index element={<Instruments />} />
+          <Route path="fs" element={<FSpage />} />
+          <Route path="passgen" element={<Passgen />} />
+          <Route path="calc" element={<CalcPage />} />
+          <Route path="canvas" element={<CanvasPage />} />
+        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
