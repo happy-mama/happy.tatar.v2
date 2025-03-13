@@ -6,6 +6,7 @@ import { Layer as ILayer } from "konva/lib/Layer";
 import useCanvasStore, { Feature } from "../store";
 import RenderRect from "./rect";
 import canvasContext from "../ctx";
+import globals from "@/styles/globals";
 
 const renderFeature = (f: Feature, i: number) => {
   switch (f.type) {
@@ -47,8 +48,11 @@ const CanvasRender = () => {
 
   return (
     <Stage
-      width={window.innerWidth - 50}
-      height={window.innerHeight - 90}
+      width={window.innerWidth}
+      height={
+        window.innerHeight -
+        Number(globals.size.height.header.replace("px", ""))
+      }
       onClick={canvasCtx.events.global.click}
       onMouseDown={canvasCtx.events.global.mouseDown}
       onMouseMove={canvasCtx.events.global.mouseMove}

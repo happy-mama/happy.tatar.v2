@@ -53,6 +53,7 @@ export type CanvasContext = {
       position: CanvasPosition;
     };
     isDrawing: boolean;
+    fill: string;
   };
   edit: {
     border: keyof EditShapes;
@@ -112,6 +113,7 @@ const canvasContext = createContext<CanvasContext>({
       },
     },
     isDrawing: false,
+    fill: "#000000",
   },
   edit: {
     border: "b",

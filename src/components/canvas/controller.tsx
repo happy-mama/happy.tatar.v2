@@ -1,8 +1,12 @@
-import canvas from "@/styles/pages/canvas";
+import { useContext } from "react";
 
+import canvas from "@/styles/pages/canvas";
+import utils from "@/styles/utils";
 import tool_pointer from "./assets/tool_pointer.svg";
 import tool_rect from "./assets/tool_rect.svg";
 import useCanvasStore, { CanvasStore } from "./store";
+import canvasContext from "./ctx";
+import ColorPicker from "./components/colorPicker";
 
 const SVG = {
   tool_pointer,
@@ -30,20 +34,31 @@ const Button = (p: props) => {
 };
 
 const CanvasController = () => {
-  const canvasStore = useCanvasStore(({ tool, setTool, setMode }) => ({
-    tool,
-    setTool,
-    setMode,
-  }));
+  const canvasStore = useCanvasStore();
+
+  const canvasCtx = useContext(canvasContext);
 
   const handleClick = (v: CanvasStore["tool"], m: CanvasStore["mode"]) => {
     canvasStore.setTool(v);
     canvasStore.setMode(m);
+    canvasStore.setSelected("");
   };
 
+  const handleColorChange = (color: string) => {
+    if (canvasStore.selected) {
+      canvasStore.setFeature({ id: canvasStore.selected, fill: color });
+    } else {
+      canvasCtx.draw.fill = color;
+    }
+  };
+
+  const colorPickerColor = canvasStore.selected
+    ? canvasStore.features[canvasStore.selected].fill
+    : canvasCtx.draw.fill;
+
   return (
-    <canvas.controlsWrapper>
-      <canvas.controlsContainer>
+    <canvas.controlWrapper>
+      <canvas.controlContainer>
         <Button
           onClick={handleClick}
           active={canvasStore.tool}
@@ -56,8 +71,12 @@ const CanvasController = () => {
           type="rect"
           mode="draw"
         />
-      </canvas.controlsContainer>
-    </canvas.controlsWrapper>
+      </canvas.controlContainer>
+      <canvas.controlContainer $hide={canvasStore.tool == "pointer"}>
+        <ColorPicker value={colorPickerColor} onChange={handleColorChange} />
+        <utils.liner $height="30px" />
+      </canvas.controlContainer>
+    </canvas.controlWrapper>
   );
 };
 

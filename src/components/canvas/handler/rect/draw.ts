@@ -50,7 +50,7 @@ const drawRectEvents = (p: props) => {
         y: p.ctx.draw.init.position.y,
         width: p.ctx.shapes.rect.f.width(),
         height: p.ctx.shapes.rect.f.height(),
-        fill: "#000",
+        fill: p.ctx.draw.fill,
       });
 
       p.ctx.shapes.rect.f.absolutePosition({ x: 0, y: 0 });

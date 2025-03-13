@@ -4,17 +4,18 @@ import { Link } from "react-router-dom";
 
 const header = {
   container: styled.div`
-    padding: 0px 30px 0px 30px;
-
     display: flex;
     justify-content: space-between;
+
+    max-height: ${globals.size.height.header};
+
+    padding: 0px 30px 0px 30px;
 
     z-index: ${globals.zIndex.header};
   `,
 
   silentLink: styled(Link)`
     text-decoration: none;
-    height: 26px;
 
     :hover {
       color: ${globals.color.text.link};

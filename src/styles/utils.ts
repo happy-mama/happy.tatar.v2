@@ -42,6 +42,14 @@ const utils = {
     width: ${props => props.$width || "0px"};
     height: ${props => props.$height || "0px"};
   `,
+  liner: styled.div<Spacer & { $color?: string }>`
+    width: ${props => props.$width || "1px"};
+    height: ${props => props.$height || "1px"};
+
+    margin: auto;
+
+    background-color: ${props => props.$color || globals.color.bg.liner};
+  `,
   inlineElements: styled.div`
     display: flex;
 

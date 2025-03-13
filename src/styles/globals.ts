@@ -20,6 +20,7 @@ const globals = {
       notification: "rgba(54, 54, 54, 0.9)",
       fsInput: "rgba(47, 47, 47, 0.2)",
       white: "rgb(250, 250, 250)",
+      liner: "#333",
     },
   },
 
@@ -35,6 +36,9 @@ const globals = {
   },
 
   size: {
+    height: {
+      header: "60px",
+    },
     text: {
       small: "16px",
       lite: "20px",

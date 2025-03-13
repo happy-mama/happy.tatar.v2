@@ -8,8 +8,8 @@ export type Feature = {
   y: number;
   width: number;
   height: number;
-  fill?: string;
-  offset?: { x: number; y: number };
+  fill: string;
+  offset: { x: number; y: number };
 };
 
 type CanvasValues = {
