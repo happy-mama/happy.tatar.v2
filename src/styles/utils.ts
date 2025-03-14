@@ -27,6 +27,15 @@ interface ttMagic {
 }
 
 const utils = {
+  center: styled.div`
+    margin: auto;
+  `,
+  JustifySpaceAlign: styled.div`
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+  `,
   silentLink: styled(Link)`
     text-decoration: none;
 
@@ -124,6 +133,58 @@ const utils = {
   hider: styled.div<{ $show: boolean; $transition?: string }>`
     transition: ${props => props.$transition || "0.2s"};
     opacity: ${props => (props.$show ? "1" : "0")};
+  `,
+  textInput: styled.input`
+    min-width: 400px;
+
+    height: 22px;
+
+    background-color: ${globals.color.bg.fsInput};
+    border: 1px solid transparent;
+    border-bottom: 1px solid ${globals.color.bg.blueNuclear};
+    border-radius: 4px;
+
+    color: ${globals.color.text.default};
+  `,
+  block: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 10px;
+
+    border-radius: 4px;
+    border: 1px solid ${globals.color.bg.blueLite};
+
+    background-color: ${globals.color.bg.transparent20};
+  `,
+  button: styled.div`
+    display: flex;
+    align-items: center;
+
+    padding: 0px 4px 0px 4px;
+    min-height: 24px;
+    width: fit-content;
+
+    border: 1px solid ${globals.color.bg.blueStrong};
+    border-radius: 4px;
+    background: linear-gradient(
+      50deg,
+      ${globals.color.bg.blueNuclear},
+      ${globals.color.bg.blueLite}
+    );
+
+    font-family: ${globals.fonts.Inter.default};
+    color: ${globals.color.text.default};
+    font-size: ${globals.size.text.small};
+    line-height: ${globals.size.text.small};
+
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid ${globals.color.bg.blueNuclear};
+    }
   `,
 };
 

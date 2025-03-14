@@ -33,6 +33,12 @@ const Instruments = () => {
         header="Canvas drawer"
         content="A small canvas on which you can draw and edit shapes"
       />
+
+      <InstrumentsItem
+        to="/r"
+        header="Link shortener"
+        content="Create a short link for a long URL"
+      />
     </instruments.container>
   );
 };

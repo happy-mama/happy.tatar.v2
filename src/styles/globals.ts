@@ -21,6 +21,7 @@ const globals = {
       fsInput: "rgba(47, 47, 47, 0.2)",
       white: "rgb(250, 250, 250)",
       liner: "#333",
+      transparent20: "rgba(0, 0, 0, 0.2)",
     },
   },
 
