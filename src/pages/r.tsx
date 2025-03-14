@@ -208,8 +208,8 @@ const Redirect = () => {
                   $color="link"
                   $size="small"
                   $elepsis
-                  $width="80vw"
-                  $height="80px"
+                  $maxWidth="80vw"
+                  $maxHeight="80px"
                 >
                   {redirectData.url}
                 </utils.text>

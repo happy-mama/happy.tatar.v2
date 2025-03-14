@@ -46,8 +46,12 @@ const RedirectById = () => {
 
       {redirectData && (
         <utils.inlineElements>
-          <utils.text $color="default" $margin="auto 0px auto 0px">
-            This link redirects to{" "}
+          <utils.text
+            $color="default"
+            $size="small"
+            $margin="auto 0px auto 0px"
+          >
+            This link redirects to
           </utils.text>
 
           <utils.silentLink to={redirectData.url}>
@@ -55,8 +59,8 @@ const RedirectById = () => {
               $color="link"
               $size="small"
               $elepsis
-              $width="70vw"
-              $height="80px"
+              $maxWidth="70vw"
+              $maxHeight="80px"
             >
               {redirectData.url}
             </utils.text>

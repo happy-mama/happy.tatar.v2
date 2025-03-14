@@ -13,7 +13,10 @@ interface Text {
   $ruby?: boolean;
   $width?: string;
   $minWidth?: string;
+  $maxWidth?: string;
   $height?: string;
+  $minHeight?: string;
+  $maxHeight?: string;
   $code?: boolean;
   $elepsis?: boolean;
   $margin?: string;
@@ -91,7 +94,10 @@ const utils = {
 
     width: ${props => props.$width};
     min-width: ${props => props.$minWidth};
+    max-width: ${props => props.$maxWidth};
     height: ${props => props.$height};
+    min-height: ${props => props.$minHeight};
+    max-height: ${props => props.$maxHeight};
 
     font-family: ${props =>
       props.$code ? "monospace" : globals.fonts.Inter.default};
