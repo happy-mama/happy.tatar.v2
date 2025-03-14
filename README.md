@@ -5,6 +5,8 @@ instruments:
 - FS (File Server)
 - passgen
 - calculator (preety comfortable)
+- canvas drawer
+- link shortener
 
 features:
 
