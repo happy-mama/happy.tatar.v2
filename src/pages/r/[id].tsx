@@ -45,14 +45,23 @@ const RedirectById = () => {
       {!redirectData && <utils.text $color="default">Loading...</utils.text>}
 
       {redirectData && (
-        <utils.text $color="default">
-          <utils.inlineElements>
+        <utils.inlineElements>
+          <utils.text $color="default" $margin="auto 0px auto 0px">
             This link redirects to{" "}
-            <utils.silentLink to={redirectData.url}>
-              <utils.text $color="link">{redirectData.url}</utils.text>
-            </utils.silentLink>
-          </utils.inlineElements>
-        </utils.text>
+          </utils.text>
+
+          <utils.silentLink to={redirectData.url}>
+            <utils.text
+              $color="link"
+              $size="small"
+              $elepsis
+              $width="70vw"
+              $height="80px"
+            >
+              {redirectData.url}
+            </utils.text>
+          </utils.silentLink>
+        </utils.inlineElements>
       )}
     </utils.center>
   );

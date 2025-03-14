@@ -154,7 +154,7 @@ const Redirect = () => {
         <utils.button onClick={createLink}>Create new link</utils.button>
 
         <utils.JustifySpaceAlign>
-          <utils.text $size="small" $color="default">
+          <utils.text $size="small" $color="default" $minWidth="fit-content">
             Key
           </utils.text>
           <utils.textInput
@@ -164,8 +164,8 @@ const Redirect = () => {
         </utils.JustifySpaceAlign>
 
         <utils.JustifySpaceAlign>
-          <utils.text $size="small" $color="default">
-            URL
+          <utils.text $size="small" $color="default" $minWidth="fit-content">
+            url
           </utils.text>
           <utils.textInput
             value={inputValueUrl}
@@ -180,7 +180,7 @@ const Redirect = () => {
         <utils.button onClick={findLink}>Find link</utils.button>
 
         <utils.JustifySpaceAlign>
-          <utils.text $size="small" $color="default">
+          <utils.text $size="small" $color="default" $minWidth="fit-content">
             Key
           </utils.text>
           <utils.textInput
@@ -204,7 +204,13 @@ const Redirect = () => {
                 url
               </utils.text>
               <utils.silentLink to={redirectData.url}>
-                <utils.text $color="link" $size="small">
+                <utils.text
+                  $color="link"
+                  $size="small"
+                  $elepsis
+                  $width="80vw"
+                  $height="80px"
+                >
                   {redirectData.url}
                 </utils.text>
               </utils.silentLink>

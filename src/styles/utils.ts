@@ -11,9 +11,12 @@ interface Text {
   $size?: keyof (typeof globals)["size"]["text"];
   $color?: keyof (typeof globals)["color"]["text"];
   $ruby?: boolean;
-  $width?: "fit-content" | "min-content";
+  $width?: string;
+  $minWidth?: string;
   $height?: string;
   $code?: boolean;
+  $elepsis?: boolean;
+  $margin?: string;
 }
 
 interface Img {
@@ -32,6 +35,8 @@ const utils = {
   `,
   JustifySpaceAlign: styled.div`
     display: flex;
+
+    gap: 10px;
 
     justify-content: space-between;
     align-items: center;
@@ -82,9 +87,10 @@ const utils = {
   text: styled.div<Text>`
     display: ${props => (props.$ruby ? "ruby" : "block")};
 
-    margin: 0;
+    margin: ${props => props.$margin};
 
     width: ${props => props.$width};
+    min-width: ${props => props.$minWidth};
     height: ${props => props.$height};
 
     font-family: ${props =>
@@ -94,6 +100,11 @@ const utils = {
 
     color: ${props =>
       props.$color ? globals.color.text[props.$color] : "inherit"};
+
+    overflow: ${props => (props.$elepsis ? "hidden" : "")};
+    text-overflow: ${props => (props.$elepsis ? "ellipsis" : "")};
+    overflow-wrap: break-word;
+    word-break: break-all;
   `,
   cursorPointer: styled.div`
     cursor: pointer;
@@ -135,7 +146,10 @@ const utils = {
     opacity: ${props => (props.$show ? "1" : "0")};
   `,
   textInput: styled.input`
-    min-width: 400px;
+    display: block;
+
+    min-width: 300px;
+    width: 100%;
 
     height: 22px;
 
