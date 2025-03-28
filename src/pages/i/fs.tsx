@@ -11,7 +11,7 @@ import folderSVG from "@/assets/svg/folder.svg";
 
 interface apiData {
   name: string;
-  type: 0 | 1;
+  type: "file" | "dir";
 }
 
 interface uploadStatus {
@@ -47,16 +47,31 @@ const FSpage = () => {
     setLoading(true);
 
     axios
-      .get(`${config.api}/FS2`, {
+      .get(`${config.api}/fs`, {
         params: {
-          dir: curDir,
+          dir: curDir.startsWith(".") ? curDir : "." + curDir,
         },
       })
       .then(res => {
-        setApiData(res.data);
+        if (res.data) {
+          if ("type" in res.data) {
+            if (res.data.type == "items") {
+              setApiError("");
+              return setApiData(res.data.items);
+            }
+          }
+        }
+        setApiError("Unknown error");
       })
       .catch(e => {
-        setApiError(e.response.data.error);
+        if (e.response) {
+          if ("data" in e.response) {
+            if (e.response.data.error) {
+              return setApiError(e.response.data.error);
+            }
+          }
+        }
+        setApiError("UNKNOWN ERROR");
       })
       .finally(() => {
         setLoading(false);
@@ -95,14 +110,14 @@ const FSpage = () => {
       return (
         <fs.dir
           to={
-            file.type
-              ? config.api + curDir + "/" + file.name
+            file.type == "file"
+              ? config.api + "/fs?dir=." + curDir + "/" + file.name
               : "?dir=" + curDir + "/" + file.name
           }
           key={i}
-          target={file.type ? "_blank" : ""}
+          target={file.type == "file" ? "_blank" : ""}
         >
-          {file.type ? (
+          {file.type == "file" ? (
             <fs.dirImg src={fileSVG} />
           ) : (
             <fs.dirImg src={folderSVG} />
@@ -112,7 +127,11 @@ const FSpage = () => {
       );
     });
 
-    return <fs.files>{apiError ? apiError : Files}</fs.files>;
+    if (apiError) {
+      return <utils.text $color="danger">{apiError}</utils.text>;
+    } else {
+      return <fs.files>{Files}</fs.files>;
+    }
   }, [apiData, apiError, curDir]);
 
   const UploadJSX = useMemo(() => {
@@ -139,55 +158,57 @@ const FSpage = () => {
       const formData = new FormData();
       formData.append("file", uploadFile);
 
+      const uploadDir = uploadPath ? curDir + "/" + uploadPath : curDir;
+
       axios
-        .post(`${config.api}/uf/`, formData, {
+        .post(`${config.api}/fs`, formData, {
+          params: {
+            dir: uploadDir.startsWith(".") ? uploadDir : "." + uploadDir,
+          },
           headers: {
-            Uf_key: uploadKey,
-            Uf_path: uploadPath || curDir,
+            "fs-key": uploadKey,
           },
           onUploadProgress: e => {
             setUploadProgress(e);
           },
         })
-        .then(responce => {
+        .then(() => {
+          setUploadStatus({ type: "success", msg: "Uploaded" });
+
           setUploadProgress(null);
           setIsUploading(false);
-
-          if (responce.data) {
-            if (responce.data.error) {
-              if (responce.data.error === "EWRONGKEY") {
-                setUploadStatus({ type: "danger", msg: "Wrong upload key" });
-              } else if (responce.data.error === "ENOKEY") {
-                setUploadStatus({
-                  type: "danger",
-                  msg: "Upload key missing",
-                });
-              } else {
-                setUploadStatus({
-                  type: "danger",
-                  msg: "Unknown server error",
-                });
-              }
-            } else {
-              setUploadStatus({ type: "success", msg: "Uploaded" });
-            }
-          } else {
-            setUploadStatus({
-              type: "warning",
-              msg: "Unknown server responce",
-            });
-          }
         })
         .catch(e => {
-          console.log(e);
-          if (e.responce) {
-            setUploadStatus({ type: "danger", msg: e.response.data.error });
-          } else {
-            setUploadStatus({ type: "danger", msg: "Unknown error" });
-          }
-
           setUploadProgress(null);
           setIsUploading(false);
+
+          if (e.response) {
+            if ("data" in e.response) {
+              if (e.response.data.type && e.response.data.type == "error") {
+                if (e.response.data.message == "fs-key:invalid:secret") {
+                  return setUploadStatus({
+                    type: "danger",
+                    msg: "Wrong upload key",
+                  });
+                } else if (e.response.data.message == "fs-key:reqired:secret") {
+                  return setUploadStatus({
+                    type: "danger",
+                    msg: "Upload key missing",
+                  });
+                } else {
+                  return setUploadStatus({
+                    type: "danger",
+                    msg: "Unknown server error",
+                  });
+                }
+              }
+            }
+          }
+
+          setUploadStatus({
+            type: "danger",
+            msg: "Unknown server error",
+          });
         });
     };
 
@@ -261,7 +282,7 @@ const FSpage = () => {
           </utils.text>
           <fs.upload.inputText
             type="text"
-            placeholder="current path by default"
+            placeholder="current path by default or current path + file path"
             value={uploadPath}
             onChange={e => {
               setUploadPath(e.target.value);
