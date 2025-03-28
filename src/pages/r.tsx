@@ -28,53 +28,76 @@ const Redirect = () => {
         url: inputValueUrl,
       })
       .then(response => {
-        if (!response.data)
-          return addMessage({
-            text: "Unknown server error",
-            type: "danger",
-          });
-
-        setRedirectData(response.data);
-        addMessage({
-          text: "Success",
-          type: "success",
+        if (response.data) {
+          if ("type" in response.data && response.data.type == "item") {
+            setRedirectData(response.data.item);
+            return addMessage({
+              text: "Success",
+              type: "success",
+            });
+          }
+        }
+        return addMessage({
+          text: "Unknown server error",
+          type: "danger",
         });
       })
       .catch(e => {
-        if (e.response.data && e.response.data.error) {
-          if (e.response.data.error == "E_RedirectCE:key")
-            return addMessage({
-              text: "Link key already exists",
-              type: "danger",
-            });
-
-          if (e.response.data.error == "EWRONGBODY:url")
+        if (
+          e.response &&
+          e.response.data &&
+          "type" in e.response.data &&
+          e.response.data.type == "error"
+        ) {
+          if (e.response.data.message == "url:required:true")
             return addMessage({
               text: "URL is missing",
               type: "danger",
             });
 
-          if (e.response.data.error == "EWRONGBODY:key")
+          if (e.response.data.message.startsWith("url:minlength:"))
             return addMessage({
-              text: "Key is missing",
+              text: "Url length invalid",
               type: "danger",
             });
 
-          if (e.response.data.error == "EWRONGBODYLENGTH:key")
+          if (e.response.data.message.startsWith("url:maxlength:"))
             return addMessage({
               text: "Key length invalid",
               type: "danger",
             });
 
-          if (e.response.data.error == "EWRONGBODYMATCH:url")
+          if (e.response.data.message == "url:required:true")
+            return addMessage({
+              text: "Url is missing",
+              type: "danger",
+            });
+
+          if (e.response.data.message == "url:validate:URL")
             return addMessage({
               text: "URL is invalid or does not start with https://",
               type: "danger",
             });
 
-          if (e.response.data.error == "E_RedirectDC")
+          if (e.response.data.message.startsWith("key:maxlength:"))
             return addMessage({
-              text: "A link with this key already exists",
+              text: "Key length invalid",
+            });
+
+          if (e.response.data.message.startsWith("key:minlength:"))
+            return addMessage({
+              text: "Key length invalid",
+            });
+
+          if (e.response.data.message == "key:required:true")
+            return addMessage({
+              text: "Key is missing",
+              type: "danger",
+            });
+
+          if (e.response.data.message == "key:unique:true")
+            return addMessage({
+              text: "Link key already exists",
               type: "danger",
             });
         }
@@ -90,21 +113,28 @@ const Redirect = () => {
     axios
       .get(`${config.api}/r/${inputValueKey}?notCount=1`)
       .then(response => {
-        if (!response.data)
-          return addMessage({
-            text: "Unknown server error",
-            type: "danger",
-          });
-
-        setRedirectData(response.data);
-        addMessage({
-          text: "Success",
-          type: "success",
+        if (response.data) {
+          if ("type" in response.data && response.data.type == "item") {
+            setRedirectData(response.data.item);
+            return addMessage({
+              text: "Success",
+              type: "success",
+            });
+          }
+        }
+        return addMessage({
+          text: "Unknown server error",
+          type: "danger",
         });
       })
       .catch(e => {
-        if (e.response.data && e.response.data.error) {
-          if (e.response.data.error == "EWRONGKEY")
+        if (
+          e.response &&
+          e.response.data &&
+          "type" in e.response.data &&
+          e.response.data.type == "error"
+        ) {
+          if (e.response.data.error == "NOT_FOUND")
             return addMessage({
               text: "Link with such key does not exist",
               type: "danger",
@@ -122,30 +152,41 @@ const Redirect = () => {
     if (!redirectData) return;
 
     axios
-      .delete(`${config.api}/r`, {
-        data: {
-          key: redirectData.key,
-        },
-      })
+      .delete(`${config.api}/r/${redirectData.key}`)
       .then(response => {
-        if (!response.data)
-          return addMessage({
-            text: "Unknown server error",
-            type: "danger",
-          });
-
-        setRedirectData(null);
-        addMessage({
-          text: "Success",
-          type: "success",
+        if (response.data) {
+          if ("type" in response.data && response.data.type == "success") {
+            setRedirectData(null);
+            return addMessage({
+              text: "Success",
+              type: "success",
+            });
+          }
+        }
+        return addMessage({
+          text: "Unknown server error",
+          type: "danger",
         });
       })
-      .catch(() =>
+      .catch(e => {
+        if (
+          e.response &&
+          e.response.data &&
+          "type" in e.response.data &&
+          e.response.data.type == "error"
+        ) {
+          if (e.response.data.error == "NOT_FOUND")
+            return addMessage({
+              text: "Link with such key does not exist",
+              type: "danger",
+            });
+        }
+
         addMessage({
           text: "Unknown server error",
           type: "danger",
-        })
-      );
+        });
+      });
   };
 
   return (

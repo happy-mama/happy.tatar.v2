@@ -29,9 +29,13 @@ const RedirectById = () => {
       .then(responce => {
         if (!responce.data) return setNotFound(true);
 
-        setRedirectData(responce.data);
+        if ("item" in responce.data) {
+          setRedirectData(responce.data.item);
 
-        window.location.href = responce.data.url;
+          window.location.href = responce.data.item.url;
+        } else {
+          setNotFound(true);
+        }
       })
       .catch(() => {
         setNotFound(true);
