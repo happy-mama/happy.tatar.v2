@@ -17,6 +17,6 @@ export default defineConfig({
   },
   preview: {
     port: 3010,
-    allowedHosts: ["happy.tatar"],
+    allowedHosts: true,
   },
 });
