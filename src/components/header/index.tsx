@@ -7,11 +7,15 @@ const Header = () => {
 
   return (
     <header.container>
-      <header.silentLink to="/">
-        <header.item>
-          {location.pathname !== "/" && <header.text>Home</header.text>}
-        </header.item>
-      </header.silentLink>
+      {location.pathname !== "/" ? (
+        <utils.silentLink to="/">
+          <header.item>
+            <header.text>Home</header.text>
+          </header.item>
+        </utils.silentLink>
+      ) : (
+        <div></div>
+      )}
 
       <header.itemList>
         <utils.silentLink to="/i">

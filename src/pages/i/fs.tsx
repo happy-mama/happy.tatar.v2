@@ -95,11 +95,11 @@ const FSpage = () => {
 
     return (
       <fs.buttonsContainer>
-        <fs.button onClick={handleBack}>Back</fs.button>
-        <fs.button onClick={handleRoot}>Root</fs.button>
-        <fs.button onClick={handleUpload}>
+        <utils.button onClick={handleBack}>Back</utils.button>
+        <utils.button onClick={handleRoot}>Root</utils.button>
+        <utils.button onClick={handleUpload}>
           {upload ? "Hide upload" : "Show upload"}
-        </fs.button>
+        </utils.button>
         <fs.pathUrl>{".../public" + curDir}</fs.pathUrl>
       </fs.buttonsContainer>
     );
@@ -144,7 +144,7 @@ const FSpage = () => {
       setUploadStatus({ type: "success", msg: "" });
     };
 
-    const handleUploadFile = () => {
+    const handleUploadFile = async () => {
       if (!uploadFile || isUploading) {
         return;
       }
@@ -160,13 +160,17 @@ const FSpage = () => {
 
       const uploadDir = uploadPath ? curDir + "/" + uploadPath : curDir;
 
+      const fileData = await uploadFile.arrayBuffer();
+
       axios
-        .post(`${config.api}/fs`, formData, {
+        .post(`${config.api}/fs`, fileData, {
           params: {
             dir: uploadDir.startsWith(".") ? uploadDir : "." + uploadDir,
           },
           headers: {
+            "Content-Type": uploadFile.type,
             "fs-key": uploadKey,
+            "fs-name": uploadFile.name,
           },
           onUploadProgress: e => {
             setUploadProgress(e);
@@ -291,7 +295,7 @@ const FSpage = () => {
         </fs.upload.inliner>
         <fs.upload.inliner>
           <fs.upload.buttonLabel>
-            <fs.button>Select file</fs.button>
+            <utils.button>Select file</utils.button>
             <input
               style={{ display: "none" }}
               type="file"
@@ -301,7 +305,7 @@ const FSpage = () => {
           {FileData()}
         </fs.upload.inliner>
         <fs.upload.inliner>
-          <fs.button onClick={handleUploadFile}>Upload</fs.button>
+          <utils.button onClick={handleUploadFile}>Upload</utils.button>
           {UploadData()}
         </fs.upload.inliner>
       </fs.upload.container>

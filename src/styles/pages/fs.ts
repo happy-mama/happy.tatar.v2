@@ -18,12 +18,10 @@ const fs = {
   header: styled.div`
     padding: 5px 0px 5px 20px;
     border-radius: 4px 4px 0px 0px;
+    border: 1px solid ${globals.color.bg.darkLite};
+    border-bottom: 1px solid ${globals.color.bg.darkMiddle};
 
-    background: linear-gradient(
-      30deg,
-      ${globals.color.bg.blueNuclear},
-      ${globals.color.bg.blueStrong}
-    );
+    background-color: ${globals.color.bg.transparent20};
 
     font-family: ${globals.fonts.Inter.default};
     color: ${globals.color.text.default};
@@ -37,6 +35,10 @@ const fs = {
     flex-direction: column;
 
     overflow: hidden;
+
+    border-radius: 0px 0px 4px 4px;
+    border: 1px solid ${globals.color.bg.darkLite};
+    border-top: 0px;
   `,
   pathUrl: styled.div`
     margin-left: 10px;
@@ -45,7 +47,7 @@ const fs = {
     height: fit-content;
     width: fit-content;
 
-    background-color: ${globals.color.bg.highlite};
+    background-color: ${globals.color.bg.darkStrong};
     border-radius: 4px;
 
     font-family: ${globals.fonts.Inter.default};
@@ -60,36 +62,10 @@ const fs = {
 
     padding: 5px 0px 5px 10px;
 
-    min-height: 30px;
-    height: 30px;
-  `,
-  button: styled.div`
-    display: flex;
     align-items: center;
 
-    padding: 0px 4px 0px 4px;
-    min-height: 24px;
-    width: fit-content;
-
-    border: 1px solid ${globals.color.bg.blueStrong};
-    border-radius: 4px;
-    background: linear-gradient(
-      50deg,
-      ${globals.color.bg.blueNuclear},
-      ${globals.color.bg.blueLite}
-    );
-
-    font-family: ${globals.fonts.Inter.default};
-    color: ${globals.color.text.default};
-    font-size: ${globals.size.text.small};
-    line-height: ${globals.size.text.small};
-
-    transition: 0.5s;
-    cursor: pointer;
-
-    &:hover {
-      border: 1px solid ${globals.color.bg.blueNuclear};
-    }
+    min-height: 30px;
+    height: 30px;
   `,
   files: styled.div`
     display: flex;
@@ -115,7 +91,7 @@ const fs = {
     transition: 0.2s;
 
     &:hover {
-      border: 1px solid ${globals.color.bg.blueNuclear};
+      border: 1px solid ${globals.color.bg.darkLite};
       transform: translate(5px);
     }
   `,
@@ -136,8 +112,7 @@ const fs = {
       height: ${props => (props.$show ? "120px" : "0px")};
       padding: ${props => (props.$show ? "10px" : "0px")};
 
-      border-top: 1px solid ${globals.color.bg.blueNuclear};
-      border-bottom: 1px solid ${globals.color.bg.blueNuclear};
+      border-bottom: 1px solid ${globals.color.bg.darkMiddle};
 
       transition: 0.5s;
 
@@ -155,10 +130,15 @@ const fs = {
 
       background-color: ${globals.color.bg.fsInput};
       border: 1px solid transparent;
-      border-bottom: 1px solid ${globals.color.bg.blueNuclear};
+      border-bottom: 1px solid ${globals.color.bg.darkMiddle};
       border-radius: 4px;
 
       color: ${globals.color.text.default};
+
+      &:focus-visible {
+        outline: none;
+        border-bottom: 1px solid ${globals.color.bg.darkLite};
+      }
     `,
     buttonLabel: styled.label``,
     fileData: styled.div`

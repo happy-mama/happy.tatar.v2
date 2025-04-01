@@ -17,12 +17,9 @@ const passgen = {
   header: styled.div`
     padding: 5px 0px 5px 20px;
     border-radius: 4px 4px 0px 0px;
+    border: 1px solid ${globals.color.bg.darkLite};
 
-    background: linear-gradient(
-      30deg,
-      ${globals.color.bg.blueNuclear},
-      ${globals.color.bg.blueStrong}
-    );
+    background-color: ${globals.color.bg.transparent20};
 
     font-family: ${globals.fonts.Inter.default};
     color: ${globals.color.text.default};
@@ -34,18 +31,27 @@ const passgen = {
     display: flex;
     flex-direction: column;
 
+    border-radius: 0px 0px 4px 4px;
+    border: 1px solid ${globals.color.bg.darkLite};
+    border-top: none;
+
     overflow: hidden;
   `,
   litHeader: styled.div`
     display: flex;
     align-items: center;
 
+    padding-left: 14px;
+
     height: 40px;
-    border-bottom: 1px solid ${globals.color.bg.blueNuclear};
+    border-bottom: 1px solid ${globals.color.bg.darkMiddle};
 
     color: ${globals.color.text.default};
     font-size: ${globals.size.text.normal};
     font-family: ${globals.fonts.Inter.default};
+  `,
+  checkBox: styled.input`
+    accent-color: ${globals.color.bg.darkLite};
   `,
   checkboxBody: styled.label`
     display: flex;
@@ -67,35 +73,7 @@ const passgen = {
 
     color: ${globals.color.text.default};
 
-    background: ${globals.color.bg.blueStrong};
-  `,
-  button: styled.div`
-    display: flex;
-    align-items: center;
-
-    padding: 0px 4px 0px 4px;
-    min-height: 24px;
-    width: fit-content;
-
-    border: 1px solid ${globals.color.bg.blueStrong};
-    border-radius: 4px;
-    background: linear-gradient(
-      50deg,
-      ${globals.color.bg.blueNuclear},
-      ${globals.color.bg.blueLite}
-    );
-
-    font-family: ${globals.fonts.Inter.default};
-    color: ${globals.color.text.default};
-    font-size: ${globals.size.text.small};
-    line-height: ${globals.size.text.small};
-
-    transition: 0.5s;
-    cursor: pointer;
-
-    &:hover {
-      border: 1px solid ${globals.color.bg.blueNuclear};
-    }
+    background: ${globals.color.bg.darkStrong};
   `,
   password: styled.div`
     display: flex;
@@ -107,6 +85,10 @@ const passgen = {
     color: ${globals.color.text.default};
     font-size: ${globals.size.text.lite};
     line-height: ${globals.size.text.small};
+  `,
+  footer: styled.div`
+    padding-left: 10px;
+    padding-bottom: 10px;
   `,
 };
 

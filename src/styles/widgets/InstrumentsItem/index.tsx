@@ -1,4 +1,4 @@
-import instruments from "@/styles/pages/instruments";
+import { Item, ItemContent, ItemHeader } from "@/styles/pages/instruments";
 import utils from "@/styles/utils";
 
 interface InstrumentsItem {
@@ -9,18 +9,18 @@ interface InstrumentsItem {
 
 const InstrumentsItem = (props: InstrumentsItem) => {
   return (
-    <instruments.item to={props.to}>
-      <instruments.itemHeader>
+    <Item to={props.to}>
+      <ItemHeader>
         <utils.text $color="default" $size="large">
           {props.header}
         </utils.text>
-      </instruments.itemHeader>
-      <instruments.itemContent>
+      </ItemHeader>
+      <ItemContent>
         <utils.text $color="default" $size="lite">
           {props.content}
         </utils.text>
-      </instruments.itemContent>
-    </instruments.item>
+      </ItemContent>
+    </Item>
   );
 };
 

@@ -191,7 +191,7 @@ const Redirect = () => {
 
   return (
     <utils.center>
-      <utils.block>
+      <utils.block $pos="top">
         <utils.button onClick={createLink}>Create new link</utils.button>
 
         <utils.JustifySpaceAlign>
@@ -215,9 +215,7 @@ const Redirect = () => {
         </utils.JustifySpaceAlign>
       </utils.block>
 
-      <utils.spacer $height="20px" />
-
-      <utils.block>
+      <utils.block $pos="bottom">
         <utils.button onClick={findLink}>Find link</utils.button>
 
         <utils.JustifySpaceAlign>

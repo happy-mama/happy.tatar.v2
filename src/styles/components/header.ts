@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import globals from "@/styles/globals";
-import { Link } from "react-router-dom";
 
 const header = {
   container: styled.div`
@@ -12,18 +11,6 @@ const header = {
     padding: 0px 30px 0px 30px;
 
     z-index: ${globals.zIndex.header};
-  `,
-
-  silentLink: styled(Link)`
-    text-decoration: none;
-
-    :hover {
-      color: ${globals.color.text.link};
-
-      * {
-        color: ${globals.color.text.link};
-      }
-    }
   `,
 
   itemList: styled.div`
@@ -40,13 +27,15 @@ const header = {
   `,
 
   text: styled.h5`
-    cursor: pointer;
-
-    font-family: ${globals.fonts.Zain.extraLight};
-    font-size: ${globals.size.text.big};
     margin: 0;
 
     color: ${globals.color.text.default};
+    font-family: ${globals.fonts.Zain.extraLight};
+    font-size: ${globals.size.text.big};
+
+    transition: color 0.2s;
+
+    cursor: pointer;
   `,
 };
 

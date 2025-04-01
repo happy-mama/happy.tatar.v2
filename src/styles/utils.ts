@@ -47,6 +47,8 @@ const utils = {
   silentLink: styled(Link)`
     text-decoration: none;
 
+    transition: color 0.2s;
+
     :hover {
       color: ${globals.color.text.link};
 
@@ -161,20 +163,37 @@ const utils = {
 
     background-color: ${globals.color.bg.fsInput};
     border: 1px solid transparent;
-    border-bottom: 1px solid ${globals.color.bg.blueNuclear};
+    border-bottom: 1px solid ${globals.color.bg.darkMiddle};
     border-radius: 4px;
 
     color: ${globals.color.text.default};
+
+    transition: all 0.2s;
+
+    &:focus {
+      border-bottom: 1px solid ${globals.color.bg.darkLite};
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
   `,
-  block: styled.div`
+  block: styled.div<{ $pos?: "top" | "bottom" }>`
     display: flex;
     flex-direction: column;
     gap: 10px;
 
     padding: 10px;
 
-    border-radius: 4px;
-    border: 1px solid ${globals.color.bg.blueLite};
+    border-radius: ${props =>
+      props.$pos
+        ? props.$pos == "top"
+          ? "4px 4px 0px 0px"
+          : "0px 0px 4px 4px"
+        : "4px"};
+    border: 1px solid ${globals.color.bg.darkLite};
+    border-top: ${props =>
+      props.$pos && props.$pos == "bottom" ? "none" : ""};
 
     background-color: ${globals.color.bg.transparent20};
   `,
@@ -186,13 +205,8 @@ const utils = {
     min-height: 24px;
     width: fit-content;
 
-    border: 1px solid ${globals.color.bg.blueStrong};
+    border: 1px solid ${globals.color.bg.darkMiddle};
     border-radius: 4px;
-    background: linear-gradient(
-      50deg,
-      ${globals.color.bg.blueNuclear},
-      ${globals.color.bg.blueLite}
-    );
 
     font-family: ${globals.fonts.Inter.default};
     color: ${globals.color.text.default};
@@ -203,7 +217,7 @@ const utils = {
     cursor: pointer;
 
     &:hover {
-      border: 1px solid ${globals.color.bg.blueNuclear};
+      border: 1px solid ${globals.color.bg.darkLite};
     }
   `,
 };

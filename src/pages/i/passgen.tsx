@@ -135,92 +135,91 @@ const Passgen = () => {
     <passgen.container>
       <passgen.header>Passgen</passgen.header>
       <passgen.content>
-        <div>
-          <passgen.litHeader>Options</passgen.litHeader>
-          <utils.spacer $height="10px" />
-          <passgen.checkboxBody>
-            <passgen.select value={length} onChange={handleLength}>
-              <option value={8}>8</option>
-              <option value={12}>12</option>
-              <option value={16}>16</option>
-              <option value={20}>20</option>
-              <option value={24}>24</option>
-              <option value={28}>28</option>
-              <option value={32}>32</option>
-            </passgen.select>
-            <passgen.checkboxText>length</passgen.checkboxText>
-          </passgen.checkboxBody>
-          <passgen.checkboxBody>
-            <input
-              type="checkbox"
-              checked={checks.numbers}
-              onChange={() => handleCheckClick("numbers")}
-            />
-            <passgen.checkboxText>
-              numbers <utils.embedText>0 - 9</utils.embedText>
-            </passgen.checkboxText>
-          </passgen.checkboxBody>
-          <passgen.checkboxBody>
-            <input
-              type="checkbox"
-              checked={checks.uppercase}
-              onChange={() => handleCheckClick("uppercase")}
-            />
-            <passgen.checkboxText>
-              uppercase letters <utils.embedText>A - Z</utils.embedText>
-            </passgen.checkboxText>
-          </passgen.checkboxBody>
-          <passgen.checkboxBody>
-            <input
-              type="checkbox"
-              checked={checks.lowercase}
-              onChange={() => handleCheckClick("lowercase")}
-            />
-            <passgen.checkboxText>
-              lowercase letters <utils.embedText>a - z</utils.embedText>
-            </passgen.checkboxText>
-          </passgen.checkboxBody>
-          <passgen.checkboxBody>
-            <input
-              type="checkbox"
-              checked={checks.special}
-              onChange={() => handleCheckClick("special")}
-            />
-            <passgen.checkboxText>
-              special symbols{" "}
-              <utils.embedText>! % * ^ ( ) ? @ # $ & ~</utils.embedText>
-            </passgen.checkboxText>
-          </passgen.checkboxBody>
-          <passgen.checkboxBody>
-            <input
-              type="checkbox"
-              checked={checks.dots}
-              onChange={() => handleCheckClick("dots")}
-            />
-            <passgen.checkboxText>
-              dots <utils.embedText>. , : ; ' " `</utils.embedText>
-            </passgen.checkboxText>
-          </passgen.checkboxBody>
-          <passgen.checkboxBody>
-            <input
-              type="checkbox"
-              checked={checks.lines}
-              onChange={() => handleCheckClick("lines")}
-            />
-            <passgen.checkboxText>
-              lines <utils.embedText>/ \ | - _</utils.embedText>
-            </passgen.checkboxText>
-          </passgen.checkboxBody>
-          <utils.spacer $height="10px" />
-        </div>
-        <div>
-          <passgen.litHeader>Password</passgen.litHeader>
-          <passgen.password>{password}</passgen.password>
+        <passgen.litHeader>Options</passgen.litHeader>
+        <utils.spacer $height="10px" />
+        <passgen.checkboxBody>
+          <passgen.select value={length} onChange={handleLength}>
+            <option value={8}>8</option>
+            <option value={12}>12</option>
+            <option value={16}>16</option>
+            <option value={20}>20</option>
+            <option value={24}>24</option>
+            <option value={28}>28</option>
+            <option value={32}>32</option>
+          </passgen.select>
+          <passgen.checkboxText>length</passgen.checkboxText>
+        </passgen.checkboxBody>
+        <passgen.checkboxBody>
+          <passgen.checkBox
+            type="checkbox"
+            checked={checks.numbers}
+            onChange={() => handleCheckClick("numbers")}
+          />
+          <passgen.checkboxText>
+            numbers <utils.embedText>0 - 9</utils.embedText>
+          </passgen.checkboxText>
+        </passgen.checkboxBody>
+        <passgen.checkboxBody>
+          <passgen.checkBox
+            type="checkbox"
+            checked={checks.uppercase}
+            onChange={() => handleCheckClick("uppercase")}
+          />
+          <passgen.checkboxText>
+            uppercase letters <utils.embedText>A - Z</utils.embedText>
+          </passgen.checkboxText>
+        </passgen.checkboxBody>
+        <passgen.checkboxBody>
+          <passgen.checkBox
+            type="checkbox"
+            checked={checks.lowercase}
+            onChange={() => handleCheckClick("lowercase")}
+          />
+          <passgen.checkboxText>
+            lowercase letters <utils.embedText>a - z</utils.embedText>
+          </passgen.checkboxText>
+        </passgen.checkboxBody>
+        <passgen.checkboxBody>
+          <passgen.checkBox
+            type="checkbox"
+            checked={checks.special}
+            onChange={() => handleCheckClick("special")}
+          />
+          <passgen.checkboxText>
+            special symbols{" "}
+            <utils.embedText>! % * ^ ( ) ? @ # $ & ~</utils.embedText>
+          </passgen.checkboxText>
+        </passgen.checkboxBody>
+        <passgen.checkboxBody>
+          <passgen.checkBox
+            type="checkbox"
+            checked={checks.dots}
+            onChange={() => handleCheckClick("dots")}
+          />
+          <passgen.checkboxText>
+            dots <utils.embedText>. , : ; ' " `</utils.embedText>
+          </passgen.checkboxText>
+        </passgen.checkboxBody>
+        <passgen.checkboxBody>
+          <passgen.checkBox
+            type="checkbox"
+            checked={checks.lines}
+            onChange={() => handleCheckClick("lines")}
+          />
+          <passgen.checkboxText>
+            lines <utils.embedText>/ \ | - _</utils.embedText>
+          </passgen.checkboxText>
+        </passgen.checkboxBody>
+        <utils.spacer $height="10px" />
+
+        <passgen.litHeader />
+        <passgen.password>{password}</passgen.password>
+        <passgen.footer>
           <utils.inlineElements>
-            <passgen.button onClick={gen}>Generate</passgen.button>
-            <passgen.button onClick={copy}>Copy</passgen.button>
+            <utils.button onClick={gen}>Generate</utils.button>
+            <utils.button onClick={copy}>Copy</utils.button>
           </utils.inlineElements>
-        </div>
+        </passgen.footer>
       </passgen.content>
     </passgen.container>
   );

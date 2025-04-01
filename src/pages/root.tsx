@@ -1,16 +1,54 @@
+import { useEffect, useState } from "react";
+
 import root from "@/styles/root";
 import EmbedLink from "@/widgets/EmbedLink";
 import utils from "@/styles/utils";
-
 import githubSVG from "@/assets/svg/github.svg";
 import telegramSVG from "@/assets/svg/telegram.svg";
 import useNotificationStore from "@/store/notification";
 import Wave from "@/components/wave";
 
+const SPLASHES = [
+  "Now with 0% sugar!",
+  "Also try guzlik.ru",
+  "Touch the grass",
+  "Reactive!",
+  "GODMODE!",
+  "PHP not detected",
+  "Random splash... omg",
+  "Rodik was here",
+  "0% brainrot!",
+  "Seeeeeecret Friday update!",
+  "Zustand forever!",
+  "Internet enabled!",
+  "BOO! sory :)",
+  "Haha, LOL!",
+  "So fresh, so clean!",
+  "Check out the far lands!",
+  "Plants vs zombies!",
+  "Water proof!",
+  "Rerender safe!",
+  "Why am I here?",
+  "nginx bro",
+  "cloudlfare bro",
+  "Instruments page is above me",
+  "Try click me!",
+];
+
 const Home = () => {
   const { addMessage } = useNotificationStore(({ addMessage }) => ({
     addMessage,
   }));
+
+  const [curSplash, setSplash] = useState("");
+
+  const handleSplashChange = () => {
+    setSplash(SPLASHES[Math.floor(Math.random() * SPLASHES.length)]);
+  };
+
+  useEffect(() => {
+    handleSplashChange();
+  }, []);
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -28,6 +66,7 @@ const Home = () => {
         <utils.text $color="default" $size="large">
           I am a fullstack dev
         </utils.text>
+        <root.splash onClick={handleSplashChange}>{curSplash}</root.splash>
       </root.header>
 
       <root.footer>
@@ -53,7 +92,7 @@ const Home = () => {
           <utils.bgHoverHighLighter onClick={() => handleCopy("nan_aaa")}>
             <utils.cursorPointer>
               <utils.inlineElements>
-                <utils.text $size="small" $color="dark">
+                <utils.text $size="small" $color="default">
                   Discord:
                 </utils.text>
                 <utils.text $size="small" $color="link">
@@ -69,7 +108,7 @@ const Home = () => {
           >
             <utils.cursorPointer>
               <utils.inlineElements>
-                <utils.text $size="small" $color="dark">
+                <utils.text $size="small" $color="default">
                   eMail:
                 </utils.text>
                 <utils.text $size="small" $color="link">

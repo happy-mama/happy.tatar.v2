@@ -1,16 +1,7 @@
 body {
   position: relative;
 
-  --body-line-start: #141a29;
-  --body-line-end: #272c61;
-  --body-dots-f: #313338;
-  --body-dots-s: #3c3c43;
-
-  background: radial-gradient(var(--body-dots-f) 1px, transparent 0px),
-    radial-gradient(var(--body-dots-s) 1px, transparent 0px),
-    linear-gradient(110deg, var(--body-line-start), var(--body-line-end));
-
-  background-size: 15px 15px, 5px 5px, 100% 100%;
+  background-color: #000;
 
   width: 100%;
   min-height: 100vh;
@@ -18,6 +9,8 @@ body {
 
   margin: 0;
   padding: 0;
+
+  user-select: none;
 }
 
 div#root {

@@ -67,25 +67,6 @@ const Wave = () => {
           ref.current.innerHTML += row.join("") + "\n";
         }
 
-        // ref.current.innerHTML = "";
-        // const centerX = canvas.width / 2;
-        // const centerY = canvas.height / 2;
-        // const radiusFactor = 5;
-
-        // for (let y = 0; y < textData.length; y++) {
-        //   const row = textData[y].split("");
-        //   for (let x = 0; x < row.length; x++) {
-        //     const dx = x - centerX;
-        //     const dy = y - centerY;
-        //     const distance = Math.sqrt(dx * dx + dy * dy);
-        //     const angle =
-        //       Math.atan2(dy, dx) + time * 0.002 + distance / radiusFactor;
-        //     const offset = Math.floor(Math.sin(angle) * 3);
-        //     const newIndex = (x + offset + row.length) % row.length;
-        //     row[x] = textData[y][newIndex];
-        //   }
-        //   ref.current.innerHTML += row.join("") + "\n";
-        // }
         requestAnimationFrame(animate);
       }
     }

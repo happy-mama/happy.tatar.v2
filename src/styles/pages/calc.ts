@@ -28,7 +28,7 @@ const calc = {
     background-color: ${globals.color.bg.fsInput};
 
     border: 1px solid transparent;
-    border-bottom: 1px solid ${globals.color.bg.blueNuclear};
+    border-bottom: 1px solid ${globals.color.bg.darkLite};
     border-radius: 4px;
 
     font-size: 20px;
@@ -68,17 +68,17 @@ const calc = {
     background-color: ${globals.color.bg.fsInput};
 
     border: 1px solid transparent;
-    border-bottom: 1px solid ${globals.color.bg.blueNuclear};
+    border-bottom: 1px solid ${globals.color.bg.darkLite};
     border-radius: 4px;
 
     cursor: pointer;
     transition: inherit;
 
     &:hover {
-      background-color: ${globals.color.bg.blueHard};
+      background-color: ${globals.color.bg.darkStrong};
     }
     &:active {
-      background-color: ${globals.color.bg.blueLite};
+      background-color: ${globals.color.bg.darkMiddle};
     }
 
     @media (max-width: 700px) {

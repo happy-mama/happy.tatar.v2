@@ -1,10 +1,10 @@
-import instruments from "@/styles/pages/instruments";
+import { Container } from "@/styles/pages/instruments";
 import utils from "@/styles/utils";
 import InstrumentsItem from "@/styles/widgets/InstrumentsItem";
 
 const Instruments = () => {
   return (
-    <instruments.container>
+    <Container>
       <InstrumentsItem
         header="FS"
         to="/i/fs"
@@ -39,7 +39,7 @@ const Instruments = () => {
         header="Link shortener"
         content="Create a short link for a long URL"
       />
-    </instruments.container>
+    </Container>
   );
 };
 

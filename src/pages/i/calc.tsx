@@ -6,7 +6,6 @@ import { useRef, useState } from "react";
 const NUMBERS = "0123456789.";
 const OPERATORS = "+-*/";
 const BRACKETS = "()";
-// const CONSTRUCTIONS = [];
 
 const CalcPage = () => {
   const [inputValue, setInputValue] = useState("");
