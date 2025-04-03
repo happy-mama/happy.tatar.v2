@@ -21,6 +21,7 @@ import CalcPage from "@/pages/i/calc";
 import CanvasPage from "@/pages/i/canvas";
 import Redirect from "@/pages/r";
 import RedirectById from "@/pages/r/[id]";
+import ClickerPage from "@/pages/i/clicker";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -41,6 +42,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="passgen" element={<Passgen />} />
           <Route path="calc" element={<CalcPage />} />
           <Route path="canvas" element={<CanvasPage />} />
+          <Route path="clicker" element={<ClickerPage />} />
         </Route>
 
         <Route path="/r">

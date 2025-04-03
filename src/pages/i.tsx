@@ -39,6 +39,12 @@ const Instruments = () => {
         header="Link shortener"
         content="Create a short link for a long URL"
       />
+
+      <InstrumentsItem
+        to="/i/clicker"
+        header="Clicker"
+        content="Just a 1 min game"
+      />
     </Container>
   );
 };

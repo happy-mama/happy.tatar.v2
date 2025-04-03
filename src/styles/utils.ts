@@ -107,7 +107,9 @@ const utils = {
       globals.size.text[props.$size ? props.$size : "normal"]};
 
     color: ${props =>
-      props.$color ? globals.color.text[props.$color] : "inherit"};
+      props.$color
+        ? globals.color.text[props.$color]
+        : globals.color.text.default};
 
     overflow: ${props => (props.$elepsis ? "hidden" : "")};
     text-overflow: ${props => (props.$elepsis ? "ellipsis" : "")};
