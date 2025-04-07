@@ -30,7 +30,7 @@ const SPLASHES = [
   "Rerender safe!",
   "Why am I here?",
   "nginx bro",
-  "cloudlfare bro",
+  "cloudflare bro",
   "Instruments page is above me",
   "Try click me!",
 ];
