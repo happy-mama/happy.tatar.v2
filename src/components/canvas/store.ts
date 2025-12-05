@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { createWithEqualityFn as create } from "zustand/traditional";
 
 export type Feature = {
   id: string;
@@ -28,13 +28,19 @@ type CanvasMutators = {
 };
 
 export interface CanvasStore extends CanvasValues, CanvasMutators {
-  Set: (
-    partial:
-      | CanvasStore
-      | Partial<CanvasStore>
-      | ((state: CanvasStore) => CanvasStore | Partial<CanvasStore>),
-    replace?: boolean | undefined
-  ) => void;
+  Set: {
+    (
+      partial:
+        | CanvasStore
+        | Partial<CanvasStore>
+        | ((state: CanvasStore) => CanvasStore | Partial<CanvasStore>),
+      replace?: false
+    ): void;
+    (
+      state: CanvasStore | ((state: CanvasStore) => CanvasStore),
+      replace: true
+    ): void;
+  };
   Get: () => CanvasStore;
 
   reset: () => void;

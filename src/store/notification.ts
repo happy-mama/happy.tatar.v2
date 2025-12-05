@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { createWithEqualityFn as create } from "zustand/traditional";
 import { v4 as uuid } from "uuid";
 
 export type NotificationMessage = {
@@ -41,15 +41,23 @@ export type NotificationMutators = {
 export interface NotificationStore
   extends NotificationValues,
     NotificationMutators {
-  Set: (
-    partial:
-      | NotificationStore
-      | Partial<NotificationStore>
-      | ((
-          state: NotificationStore
-        ) => NotificationStore | Partial<NotificationStore>),
-    replace?: boolean | undefined
-  ) => void;
+  Set: {
+    (
+      partial:
+        | NotificationStore
+        | Partial<NotificationStore>
+        | ((
+            state: NotificationStore
+          ) => NotificationStore | Partial<NotificationStore>),
+      replace?: false
+    ): void;
+    (
+      state:
+        | NotificationStore
+        | ((state: NotificationStore) => NotificationStore),
+      replace: true
+    ): void;
+  };
   Get: () => NotificationStore;
 
   reset: () => void;
