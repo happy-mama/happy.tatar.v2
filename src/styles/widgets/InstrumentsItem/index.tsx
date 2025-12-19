@@ -1,5 +1,6 @@
 import { Item, ItemContent, ItemHeader } from "@/styles/pages/instruments";
 import utils from "@/styles/utils";
+import { JSX } from "react";
 
 interface InstrumentsItem {
   header: JSX.Element | string;

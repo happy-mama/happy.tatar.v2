@@ -5,7 +5,7 @@ const useDebouncedValue = <T extends string | number>(
   delay: number
 ): T => {
   const [debouncedValue, setDebouncedValue] = useState(value);
-  const timer = useRef<NodeJS.Timeout>();
+  const timer = useRef<NodeJS.Timeout>(undefined);
 
   useEffect(() => {
     timer.current = setTimeout(() => {
