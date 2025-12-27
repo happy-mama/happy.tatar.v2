@@ -64,7 +64,7 @@ const Home = () => {
     <root.container>
       <root.header>
         <utils.text $color="default" $size="large">
-          I am a fullstack dev
+          I am a fullstack dev :)
         </utils.text>
         <root.splash onClick={handleSplashChange}>{curSplash}</root.splash>
       </root.header>
